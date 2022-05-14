@@ -1,0 +1,54 @@
+{
+  "name": "unwrapper",
+  "displayName": "PLSQL Unwrapper",
+  "description": "PLSQL Unwrapper unwraps the wrapped oracle PL/SQL code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.67.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "unwrapper.unwrap",
+        "title": "Unwrap Code"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "unwrapper.unwrap",
+        "key": "ctrl+shift+u",
+        "mac": "ctrl+shift+u"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.67.0",
+    "@vscode/test-electron": "^2.1.3",
+    "eslint": "^8.14.0",
+    "glob": "^8.0.1",
+    "mocha": "^9.2.2",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "node-html-parser": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hammad11ali/PLSQL-Unwrapper/tree/master"}
+}
