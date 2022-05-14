@@ -9,6 +9,7 @@
   "categories": [
     "Other"
   ],
+  "publisher": "HammadAli",
   "activationEvents": [
     "onStartupFinished"
   ],
