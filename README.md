@@ -1,4 +1,4 @@
-# PL/SQL Unwrapper 
+# PL/SQL Unwrapper
 
 PL/SQL unwrapper is a simple extension for vs-code which let you unwrap the wrapped oracle pl/sql code.
 
@@ -18,20 +18,25 @@ None
 
 ## Known Issues
 
-Unwrapping will through an error in case the wrapped code is corrupted. An active internet connection is required to unwrap the code.
+1. Unwrapping will through an error in case the wrapped code is corrupted.
+2. An active internet connection is required to unwrap the code.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
+### 0.0.1
 
 Initial release of PL/SQL unwrapper
 
+### 0.0.2
+
+Updated the Readme file and extension icon
+
 ## Report an issue
+
 You can raise issues on https://github.com/hammad11ali/PLSQL-Unwrapper in case you find any bugs in the extension.
 
------------------------------------------------------------------------------------------------------------
+---
 
-**Note:** Special thanks to the creator of https://www.codecrete.net/UnwrapIt/ which made the creation of this extension possible
+Special thanks to the creator of https://www.codecrete.net/UnwrapIt/ which made the creation of this extension possible
 
+Extension icon by https://icons8.com/
