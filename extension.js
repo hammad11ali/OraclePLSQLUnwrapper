@@ -50,9 +50,12 @@ function activate(context) {
 					console.log(JSON.stringify(response.data));
 					const res = response.data;
 					const root = html_parser.parse(res);
-					const text = root.querySelector('pre').text;
+					let text = root.querySelector('pre').text;
+					text = 'CREATE OR REPLACE ' + text;
+					updateStatusBar('Formatter Loading');
+					const formatted = formatter.format(text);
 					editor.edit(editBuilder => {
-						editBuilder.replace(selection, text);
+						editBuilder.replace(selection, formatted);
 					});
 					vscode.window.showInformationMessage('Unwrapping completed!');
 					updateStatusBar('Done');
@@ -69,15 +72,16 @@ function activate(context) {
 		// The code you place here will be executed every time your command is executed
 		const editor = vscode.window.activeTextEditor;
 		if (editor) {
-			updateStatusBar('Loading');
-			vscode.window.showInformationMessage('formatter your code!');
+			updateStatusBar('Formatter Loading');
+			vscode.window.showInformationMessage('formatting your code!');
 			const selection = editor.selection;
 			let text = editor.document.getText(selection);
-			text = 'CREATE OR REPLACE ' + text;
+			// text = 'CREATE OR REPLACE ' + text;
 			const formatted = formatter.format(text);
 			editor.edit(editBuilder => {
 				editBuilder.replace(selection, formatted);
 			});
+			updateStatusBar('Done');
 		}
 	});
 
@@ -95,6 +99,10 @@ function activate(context) {
 function updateStatusBar(status) {
 	if (status === 'Loading') {
 		myStatusBarItem.text = '$(sync~spin) Unwrapping...';
+		myStatusBarItem.show();
+	}
+	else if (status === 'Formatter Loading') {
+		myStatusBarItem.text = '$(check) Formatting...';
 		myStatusBarItem.show();
 	}
 	else {
