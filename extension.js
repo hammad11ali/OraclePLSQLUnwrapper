@@ -4,6 +4,8 @@ const vscode = require('vscode');
 const axios = require('axios');
 var FormData = require('form-data');
 const html_parser = require('node-html-parser');
+const formatter = require('./formatter');
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -63,9 +65,28 @@ function activate(context) {
 		}
 	});
 
+	let formatCommand = vscode.commands.registerCommand('unwrapper.format', function () {
+		// The code you place here will be executed every time your command is executed
+		const editor = vscode.window.activeTextEditor;
+		if (editor) {
+			updateStatusBar('Loading');
+			vscode.window.showInformationMessage('formatter your code!');
+			const selection = editor.selection;
+			let text = editor.document.getText(selection);
+			text = 'CREATE OR REPLACE ' + text;
+			const formatted = formatter.format(text);
+			editor.edit(editBuilder => {
+				editBuilder.replace(selection, formatted);
+			});
+		}
+	});
+
+
+
 	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.left, 1);
 	myStatusBarItem.command = 'unwrapper.unwrap';
 	context.subscriptions.push(myStatusBarItem);
+	context.subscriptions.push(formatCommand);
 	context.subscriptions.push(disposable);
 	updateStatusBar('Ready');
 }
