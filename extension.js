@@ -72,7 +72,8 @@ function activate(context) {
 			updateStatusBar('Loading');
 			vscode.window.showInformationMessage('formatter your code!');
 			const selection = editor.selection;
-			const text = editor.document.getText(selection);
+			let text = editor.document.getText(selection);
+			text = 'CREATE OR REPLACE ' + text;
 			const formatted = formatter.format(text);
 			editor.edit(editBuilder => {
 				editBuilder.replace(selection, formatted);
