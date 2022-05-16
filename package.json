@@ -20,6 +20,10 @@
       {
         "command": "unwrapper.unwrap",
         "title": "Unwrap Code"
+      },
+      {
+        "command": "unwrapper.format",
+        "title": "format Code"
       }
     ],
     "keybindings": [
