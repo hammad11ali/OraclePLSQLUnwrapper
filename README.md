@@ -4,9 +4,9 @@ PL/SQL unwrapper is a simple extension for vs-code which let you unwrap the wrap
 
 ## Features
 
-This extension uses https://www.codecrete.net/UnwrapIt/ website to unwrap the code. The main feature of this extension to skip the need to copy the code to the website, unwrapping it and coppying it back to your editor. You can use `ctrl+shift+u` or click on unwrap option on status bar at the bottom of your editor to unwrap the code.
+This extension uses https://www.codecrete.net/UnwrapIt/ website to unwrap the code. The main feature of this extension to skip the need to copy the code to the website, unwrapping it and coppying it back to your editor. You can use `ctrl+shift+u` or click on unwrap option on status bar at the bottom of your editor to unwrap the code. Extra newlines will be removed automatically.
 
-You can use `ctrl+alt+u` to remove extra newlines from code.
+You can use `ctrl+alt+u` to remove extra newlines from code manually.
 
 Sample:
 
@@ -25,21 +25,13 @@ None
 
 ## Release Notes
 
-### 0.0.1
+### 0.0.6
 
-Initial release of PL/SQL unwrapper
-
-### 0.0.2
-
-Updated the Readme file and extension icon
-
-### 0.0.3
-
-Added format command to the command pallete
+Minor Bug fixes.
 
 ## Report an issue
 
-You can raise issues on https://github.com/hammad11ali/PLSQL-Unwrapper in case you find any bugs in the extension.
+You can raise issues on https://github.com/hammad11ali/OraclePLSQLUnwrapper/issues in case you find any bugs in the extension.
 
 ---
 
