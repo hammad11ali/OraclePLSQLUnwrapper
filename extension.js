@@ -30,7 +30,9 @@ function activate(context) {
 		if (editor) {
 			updateStatusBar('Loading');
 			vscode.window.showInformationMessage('Unwrapping your code!');
-			const selection = editor.selection;
+			var firstLine = editor.document.lineAt(0);
+			var lastLine = editor.document.lineAt(editor.document.lineCount - 1);
+			var selection = new vscode.Range(firstLine.range.start, lastLine.range.end);
 			const text = editor.document.getText(selection);
 			var data = new FormData();
 			data.append('Code', text);
@@ -74,7 +76,9 @@ function activate(context) {
 		if (editor) {
 			updateStatusBar('Formatter Loading');
 			vscode.window.showInformationMessage('formatting your code!');
-			const selection = editor.selection;
+			var firstLine = editor.document.lineAt(0);
+			var lastLine = editor.document.lineAt(editor.document.lineCount - 1);
+			var selection = new vscode.Range(firstLine.range.start, lastLine.range.end);
 			let text = editor.document.getText(selection);
 			// text = 'CREATE OR REPLACE ' + text;
 			const formatted = formatter.format(text);
