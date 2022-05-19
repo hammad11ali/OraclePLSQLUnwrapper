@@ -28,6 +28,7 @@ None
 ### 0.0.6
 
 Minor Bug fixes.
+There is no need to select the code to unwrap. The action is performed on the whole document.
 
 ## Report an issue
 
