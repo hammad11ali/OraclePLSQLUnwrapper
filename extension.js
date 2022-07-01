@@ -16,20 +16,10 @@ let myStatusBarItem = vscode.StatusBarItem;
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "unwrapper" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('unwrapper.unwrap', function () {
-		// The code you place here will be executed every time your command is executed
 		const editor = vscode.window.activeTextEditor;
 		if (editor) {
 			updateStatusBar('Loading');
-			vscode.window.showInformationMessage('Unwrapping your code!');
 			var firstLine = editor.document.lineAt(0);
 			var lastLine = editor.document.lineAt(editor.document.lineCount - 1);
 			var selection = new vscode.Range(firstLine.range.start, lastLine.range.end);
@@ -49,7 +39,6 @@ function activate(context) {
 
 			axios(config)
 				.then(function (response) {
-					console.log(JSON.stringify(response.data));
 					const res = response.data;
 					const root = html_parser.parse(res);
 					let text = root.querySelector('pre').text;
@@ -59,12 +48,10 @@ function activate(context) {
 					editor.edit(editBuilder => {
 						editBuilder.replace(selection, formatted);
 					});
-					vscode.window.showInformationMessage('Unwrapping completed!');
 					updateStatusBar('Done');
 				})
 				.catch(function (error) {
 					vscode.window.showErrorMessage('Unwrapper failed!');
-					console.log(error);
 					updateStatusBar('Done');
 				});
 		}
@@ -75,7 +62,6 @@ function activate(context) {
 		const editor = vscode.window.activeTextEditor;
 		if (editor) {
 			updateStatusBar('Formatter Loading');
-			vscode.window.showInformationMessage('formatting your code!');
 			var firstLine = editor.document.lineAt(0);
 			var lastLine = editor.document.lineAt(editor.document.lineCount - 1);
 			var selection = new vscode.Range(firstLine.range.start, lastLine.range.end);

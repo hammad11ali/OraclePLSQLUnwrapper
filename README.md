@@ -1,5 +1,7 @@
 # PL/SQL Unwrapper
 
+!\[MIT License\](https://badgen.net/badge/license/MIT/blue)
+
 PL/SQL unwrapper is a simple extension for vs-code which let you unwrap the wrapped oracle pl/sql code.
 
 ## Features
@@ -25,10 +27,9 @@ None
 
 ## Release Notes
 
-### 0.0.6
+### 0.0.7
 
 Minor Bug fixes.
-There is no need to select the code to unwrap. The action is performed on the whole document.
 
 ## Report an issue
 
