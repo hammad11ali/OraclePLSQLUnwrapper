@@ -1,10 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-const axios = require('axios');
-var FormData = require('form-data');
-const html_parser = require('node-html-parser');
 const formatter = require('./formatter');
+const { unwrapSource, isWrapped } = require('./unwrapper');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -34,39 +32,31 @@ function activate(context) {
 			var lastLine = editor.document.lineAt(editor.document.lineCount - 1);
 			var selection = new vscode.Range(firstLine.range.start, lastLine.range.end);
 			const text = editor.document.getText(selection);
-			var data = new FormData();
-			data.append('Code', text);
-			data.append('UnwrapText', 'Unwrap Code');
-
-			var config = {
-				method: 'post',
-				url: 'https://www.codecrete.net/UnwrapIt/',
-				headers: {
-					...data.getHeaders()
-				},
-				data: data
-			};
-
-			axios(config)
-				.then(function (response) {
-					console.log(JSON.stringify(response.data));
-					const res = response.data;
-					const root = html_parser.parse(res);
-					let text = root.querySelector('pre').text;
-					text = 'CREATE OR REPLACE ' + text;
-					updateStatusBar('Formatter Loading');
-					const formatted = formatter.format(text);
-					editor.edit(editBuilder => {
-						editBuilder.replace(selection, formatted);
-					});
-					vscode.window.showInformationMessage('Unwrapping completed!');
+			
+			try {
+				// Check if the code is wrapped
+				if (!isWrapped(text)) {
+					vscode.window.showErrorMessage('The code does not appear to be wrapped Oracle PL/SQL code.');
 					updateStatusBar('Done');
-				})
-				.catch(function (error) {
-					vscode.window.showErrorMessage('Unwrapper failed!');
-					console.log(error);
-					updateStatusBar('Done');
+					return;
+				}
+
+				// Unwrap locally
+				let unwrappedText = unwrapSource(text);
+				unwrappedText = 'CREATE OR REPLACE ' + unwrappedText;
+				
+				updateStatusBar('Formatter Loading');
+				const formatted = formatter.format(unwrappedText);
+				editor.edit(editBuilder => {
+					editBuilder.replace(selection, formatted);
 				});
+				vscode.window.showInformationMessage('Unwrapping completed!');
+				updateStatusBar('Done');
+			} catch (error) {
+				vscode.window.showErrorMessage('Unwrapper failed: ' + error.message);
+				console.log(error);
+				updateStatusBar('Done');
+			}
 		}
 	});
 

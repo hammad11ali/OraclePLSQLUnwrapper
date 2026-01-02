@@ -2,7 +2,7 @@
   "name": "unwrapper",
   "displayName": "PLSQL Unwrapper",
   "description": "PLSQL Unwrapper unwraps the wrapped oracle PL/SQL code",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "engines": {
     "vscode": "^1.67.0"
   },
@@ -55,11 +55,9 @@
     "mocha": "^9.2.2",
     "typescript": "^4.6.4"
   },
-  "dependencies": {
-    "axios": "^0.27.2",
-    "node-html-parser": "^5.3.3"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/hammad11ali/OraclePLSQLUnwrapper"}
+    "url": "https://github.com/hammad11ali/OraclePLSQLUnwrapper"
+  }
 }

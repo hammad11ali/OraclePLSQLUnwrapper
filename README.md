@@ -1,41 +1,59 @@
 # PL/SQL Unwrapper
 
-PL/SQL unwrapper is a simple extension for vs-code which let you unwrap the wrapped oracle pl/sql code.
+A VS Code extension that unwraps Oracle PL/SQL wrapped code locally - no internet connection required!
 
 ## Features
 
-This extension uses https://www.codecrete.net/UnwrapIt/ website to unwrap the code. The main feature of this extension to skip the need to copy the code to the website, unwrapping it and coppying it back to your editor. You can use `ctrl+shift+u` or click on unwrap option on status bar at the bottom of your editor to unwrap the code. Extra newlines will be removed automatically.
+- **Local Unwrapping** - All unwrapping happens locally on your machine. Your code never leaves your computer.
+- **Fast** - No network latency, instant results.
+- **Offline Support** - Works without an internet connection.
+- **Code Formatting** - Automatically formats the unwrapped code and removes extra newlines.
 
-You can use `ctrl+alt+u` to remove extra newlines from code manually.
+### Unwrap Code
+Use `Ctrl+Shift+U` or click the **Unwrap Code** button in the status bar to unwrap wrapped PL/SQL code.
 
-Sample:
+### Format Code
+Use `Ctrl+Alt+U` to format and remove extra newlines from PL/SQL code.
+
+### Demo
 
 ![unwrap with status bar icon](gifs/unwrap-with-status-bar.gif)
 
-> Tip: You can use unwrap code command from command pallete or click on unwrap option in status bar or use `ctrl+shift+u` key to unwrap code. You can also change shortcut key in settings.
+> **Tip:** You can also use the "Unwrap Code" command from the Command Palette (`Ctrl+Shift+P`).
+
+## Usage
+
+1. Open a file containing wrapped Oracle PL/SQL code
+2. Press `Ctrl+Shift+U` or click "Unwrap Code" in the status bar
+3. The code will be unwrapped and formatted automatically
+
+## Keyboard Shortcuts
+
+| Command | Windows/Linux | Mac |
+|---------|---------------|-----|
+| Unwrap Code | `Ctrl+Shift+U` | `Ctrl+Shift+U` |
+| Format Code | `Ctrl+Alt+U` | `Ctrl+Alt+U` |
 
 ## Requirements
 
-None
-
-## Known Issues
-
-1. Unwrapping will through an error in case the wrapped code is corrupted.
-2. An active internet connection is required to unwrap the code.
+None - this extension has no external dependencies.
 
 ## Release Notes
 
+### 0.0.7
+- Unwrapping now happens locally instead of using external API
+- No internet connection required
+- Faster unwrapping with no network latency
+- Your code stays private - never sent to external servers
+
 ### 0.0.6
+- Initial release with API-based unwrapping
 
-Minor Bug fixes.
-There is no need to select the code to unwrap. The action is performed on the whole document.
+## Report an Issue
 
-## Report an issue
-
-You can raise issues on https://github.com/hammad11ali/OraclePLSQLUnwrapper/issues in case you find any bugs in the extension.
+Found a bug? Have a feature request? Please open an issue at:
+https://github.com/hammad11ali/OraclePLSQLUnwrapper/issues
 
 ---
 
-Special thanks to the creator of https://www.codecrete.net/UnwrapIt/ which made the creation of this extension possible
-
-Extension icon by https://icons8.com/
+**Extension icon by [Icons8](https://icons8.com/)**
